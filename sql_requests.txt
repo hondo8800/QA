@@ -10,6 +10,13 @@
 	SHOW tables;
 --создать таблицу
 	CREATE table courses (id INT(11) NOT NULL PRIMARY KEY, faculty VARCHAR(55) NULL, number INT(2) NULL);
+	
+	id	faculty	number
+	1	bio	1
+	2	chem	2
+	3	math	3
+	4	gum	4
+
 --свойства таблицы
 	DESC courses;
 --вставить значения в таблицу
@@ -19,4 +26,68 @@
 --удалить строку
 	DELETE FROM courses WHERE faculty="gum";
 --обновить данные таблицы
-	UPDATE courses SET faculty="gum" WHERE faculty="geo"
+	UPDATE courses SET faculty="gum" WHERE faculty="geo";
+--удалить поле
+	ALTER TABLE courses DROP COLUMN id;
+--добавить поле
+	ALTER TABLE courses ADD COLUMN id INT AFTER number;
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--выбрать уникальные значения из поля number
+	SELECT DISTINCT number FROM courses;
+--ограничить вывод несколькими строками
+	SELECT * FROM courses LIMIT 2;
+--временное название поля
+	SELECT number AS номер FROM courses;
+--сравнение со строковым значением
+	SELECT faculty, number FROM courses WHERE faculty = "bio";
+--сравнение с числом
+	SELECT number FROM courses WHERE number > 1;
+--логические операции
+	SELECT * FROM courses WHERE number = 1 AND faculty = "bio";
+	SELECT * FROM courses WHERE number = 1 OR faculty = "gum";
+--поиск значения оканчивающегося на букву "o"
+	SELECT * FROM courses WHERE faculty LIKE "%o";
+--поиск значения оканчивающегося на "io" c одним недостающим символом перед "io"
+	SELECT * FROM courses WHERE faculty LIKE "_io";
+--поиск значения с одним символом перед "i" и несколькими символами после
+	SELECT * FROM courses WHERE faculty LIKE "_i%";
+--поиск диапазона
+	SELECT * FROM courses WHERE number BETWEEN 2 AND 4;
+--поиск от противного
+	SELECT * FROM courses WHERE NOT number BETWEEN 2 AND 4;
+--значения, где number = 1 и 4
+	SELECT * FROM courses WHERE number IN (1,4);
+--объединение логических функций
+	SELECT * FROM courses WHERE (faculty = "teo" OR faculty = "bio") AND number = 1;
+--сортировка в алфавитном порядке
+	SELECT * FROM courses ORDER BY faculty;
+--сортировка в обратном алфавитном порядке
+	SELECT * FROM courses ORDER BY faculty DESC;
+--среднее значение поля number
+	SELECT AVG(number) FROM courses;
+--сумма поля number
+	SELECT SUM(number) FROM courses;
+--минимальное значение поля number
+	SELECT MIN(number) AS min_number FROM courses ;
+--максимальное значение поля number
+	SELECT MAX(number) FROM courses ;
+--количество записей
+	SELECT COUNT(faculty) FROM courses;
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
