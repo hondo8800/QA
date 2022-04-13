@@ -1,0 +1,22 @@
+--показать все БД
+	SHOW databases;
+--создать БД
+	CREATE DATABASE students;
+--удалить БД
+	DROP database students;
+--использовать БД
+	USE students;
+--показать все таблицы в выбранной БД (students)
+	SHOW tables;
+--создать таблицу
+	CREATE table courses (id INT(11) NOT NULL PRIMARY KEY, faculty VARCHAR(55) NULL, number INT(2) NULL);
+--свойства таблицы
+	DESC courses;
+--вставить значения в таблицу
+	INSERT INTO courses VALUES (1, "Bio", 1);
+--вывести все данные из таблицы
+	SELECT * FROM courses;
+--удалить строку
+	DELETE FROM courses WHERE faculty="gum";
+--обновить данные таблицы
+	UPDATE courses SET faculty="gum" WHERE faculty="geo"
